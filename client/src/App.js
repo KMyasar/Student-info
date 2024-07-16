@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import StudentList from './components/StudentList';
@@ -23,7 +22,7 @@ const App = () => {
   return (
     <div className="container mt-5">
       <AddStudent fetchStudents={fetchStudents} />
-      <StudentList students={students} />
+      <StudentList students={students} fetchStudents={fetchStudents} />
     </div>
   );
 };

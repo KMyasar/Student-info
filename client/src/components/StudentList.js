@@ -1,59 +1,47 @@
 // src/components/StudentList.js
-import React, { useEffect, useState } from 'react';
+
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Table, Button } from 'react-bootstrap';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import EditStudent from './EditStudent';
 
-const StudentList = () => {
-  const [students, setStudents] = useState([]);
+const StudentList = ({ students, fetchStudents }) => {
+  const [editingStudent, setEditingStudent] = useState(null);
 
-  const fetchStudents = async () => {
+  const deleteStudent = async (id) => {
     try {
-      const response = await axios.get('http://localhost:5001/students');
-      setStudents(response.data);
+      await axios.delete(`http://localhost:5001/students/${id}`);
+      fetchStudents();
     } catch (error) {
-      console.error('Error fetching students', error);
+      console.error('Error deleting student', error);
     }
   };
 
-  useEffect(() => {
+  const startEditing = (student) => {
+    setEditingStudent(student);
+  };
+
+  const stopEditing = () => {
+    setEditingStudent(null);
     fetchStudents();
-  }, []);
+  };
 
   return (
-    <div className="container mt-5">
+    <div>
       <h2>Student List</h2>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Registration Number</th>
-            <th>Name</th>
-            <th>Branch</th>
-            <th>Year</th>
-            <th>Total Marks</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((student) => (
-            <tr key={student._id}>
-              <td>{student.registrationNumber}</td>
-              <td>{student.name}</td>
-              <td>{student.branch}</td>
-              <td>{student.year}</td>
-              <td>{student.totalMarks}</td>
-              <td>
-                <Button variant="warning" className="me-2">
-                  <FaEdit />
-                </Button>
-                <Button variant="danger">
-                  <FaTrash />
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      {students.map((student) => (
+        <div key={student._id} className="card mt-3">
+          <div className="card-body">
+            <h5 className="card-title">{student.name}</h5>
+            <p className="card-text">Registration Number: {student.registrationNumber}</p>
+            <p className="card-text">Branch: {student.branch}</p>
+            <p className="card-text">Year: {student.year}</p>
+            <p className="card-text">Total Marks: {student.totalMarks}</p>
+            <button className="btn btn-primary mr-2" onClick={() => startEditing(student)}>Edit</button>
+            <button className="btn btn-danger" onClick={() => deleteStudent(student._id)}>Delete</button>
+          </div>
+        </div>
+      ))}
+      {editingStudent && <EditStudent student={editingStudent} stopEditing={stopEditing} />}
     </div>
   );
 };

@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -36,6 +35,30 @@ app.get('/students', async (req, res) => {
   try {
     const students = await Student.find({});
     res.send(students);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+app.put('/students/:id', async (req, res) => {
+  try {
+    const student = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    if (!student) {
+      return res.status(404).send();
+    }
+    res.send(student);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+app.delete('/students/:id', async (req, res) => {
+  try {
+    const student = await Student.findByIdAndDelete(req.params.id);
+    if (!student) {
+      return res.status(404).send();
+    }
+    res.send(student);
   } catch (error) {
     res.status(500).send(error);
   }
