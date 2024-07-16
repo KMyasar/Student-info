@@ -1,5 +1,3 @@
-// src/components/EditStudent.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -81,7 +79,7 @@ const EditStudent = ({ student, stopEditing }) => {
           />
         </div>
         <button type="submit" className="btn btn-primary mt-3">Update Student</button>
-        <button type="button" className="btn btn-secondary mt-3 ml-3" onClick={stopEditing}>Cancel</button>
+        <button type="button" className="btn btn-secondary mt-3 ml-2" onClick={stopEditing}>Cancel</button>
       </form>
     </div>
   );
