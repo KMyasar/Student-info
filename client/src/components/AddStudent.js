@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const AddStudent = ({ fetchStudents }) => {
   const [formData, setFormData] = useState({
-    registrationNumber: '',
-    name: '',
-    branch: '',
-    year: '',
-    totalMarks: '',
+    registrationNumber: "",
+    name: "",
+    branch: "",
+    year: "",
+    totalMarks: "",
   });
 
   const handleChange = (e) => {
@@ -18,73 +18,42 @@ const AddStudent = ({ fetchStudents }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5001/students', formData);
+      await axios.post("http://localhost:5001/students", formData);
       fetchStudents();
     } catch (error) {
-      console.error('Error adding student', error);
+      console.error("Error adding student", error);
     }
   };
 
+  const formGroupStyle = { marginBottom: "10px" };
+
   return (
     <div className="container mt-5">
-      <h2>Add Student Details</h2>
+      <h2 style={{ marginBottom: "25px" }}>Add Student Details</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Registration Number</label>
-          <input
-            type="text"
-            className="form-control"
-            name="registrationNumber"
-            value={formData.registrationNumber}
-            onChange={handleChange}
-            placeholder="Registration Number"
-          />
-        </div>
-        <div className="form-group">
-          <label>Name</label>
-          <input
-            type="text"
-            className="form-control"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Name"
-          />
-        </div>
-        <div className="form-group">
-          <label>Branch</label>
-          <input
-            type="text"
-            className="form-control"
-            name="branch"
-            value={formData.branch}
-            onChange={handleChange}
-            placeholder="Branch"
-          />
-        </div>
-        <div className="form-group">
-          <label>Year</label>
-          <input
-            type="number"
-            className="form-control"
-            name="year"
-            value={formData.year}
-            onChange={handleChange}
-            placeholder="Year"
-          />
-        </div>
-        <div className="form-group">
-          <label>Total Marks</label>
-          <input
-            type="number"
-            className="form-control"
-            name="totalMarks"
-            value={formData.totalMarks}
-            onChange={handleChange}
-            placeholder="Total Marks"
-          />
-        </div>
-        <button type="submit" className="btn btn-primary mt-3">Add Student</button>
+        {["Registration Number", "Name", "Branch", "Year", "Total Marks"].map(
+          (label, index) => (
+            <div className="form-group" key={index} style={formGroupStyle}>
+              <label style={formGroupStyle}>{label}</label>
+              <input
+                style={formGroupStyle}
+                type={
+                  label === "Year" || label === "Total Marks"
+                    ? "number"
+                    : "text"
+                }
+                className="form-control"
+                name={label.toLowerCase().replace(" ", "")}
+                value={formData[label.toLowerCase().replace(" ", "")]}
+                onChange={handleChange}
+                placeholder={label}
+              />
+            </div>
+          )
+        )}
+        <button type="submit" className="btn btn-primary mt-3">
+          Add Student
+        </button>
       </form>
     </div>
   );
