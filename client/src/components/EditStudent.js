@@ -24,8 +24,9 @@ const EditStudent = ({ student, stopEditing }) => {
       <h2>Edit Student Details</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Registration Number</label>
+          <label style={{ marginBottom: "10px" }}>Registration Number</label>
           <input
+          style={{ marginBottom: "10px" }}
             type="text"
             className="form-control"
             name="registrationNumber"
@@ -35,8 +36,9 @@ const EditStudent = ({ student, stopEditing }) => {
           />
         </div>
         <div className="form-group">
-          <label>Name</label>
+          <label style={{ marginBottom: "10px" }}>Name</label>
           <input
+          style={{ marginBottom: "10px" }}
             type="text"
             className="form-control"
             name="name"
@@ -46,8 +48,9 @@ const EditStudent = ({ student, stopEditing }) => {
           />
         </div>
         <div className="form-group">
-          <label>Branch</label>
+          <label style={{ marginBottom: "10px" }}>Branch</label>
           <input
+            style={{ marginBottom: "10px" }}
             type="text"
             className="form-control"
             name="branch"
@@ -57,8 +60,9 @@ const EditStudent = ({ student, stopEditing }) => {
           />
         </div>
         <div className="form-group">
-          <label>Year</label>
+          <label style={{ marginBottom: "10px" }}>Year</label>
           <input
+          style={{ marginBottom: "10px" }}
             type="number"
             className="form-control"
             name="year"
@@ -68,8 +72,9 @@ const EditStudent = ({ student, stopEditing }) => {
           />
         </div>
         <div className="form-group">
-          <label>Total Marks</label>
+          <label style={{ marginBottom: "10px" }}>Total Marks</label>
           <input
+          style={{ marginBottom: "10px" }}
             type="number"
             className="form-control"
             name="totalMarks"
