@@ -33,6 +33,7 @@ const App = () => {
         <Link to="/" className="btn btn-primary mr-2">Add Student</Link>
         <Link to="/list" className="btn btn-secondary">Student List</Link>
       </nav>
+      <hr></hr>
       <Routes>
         <Route path="/" element={<AddStudent fetchStudents={fetchStudents} />} />
         <Route path="/list" element={<StudentList students={students} fetchStudents={fetchStudents} />} />
