@@ -25,15 +25,15 @@ const App = () => {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>Student Management System</h1>
         <div>
-          <span className="mr-3">Developer Name: Mohamed yasar arafath&nbsp;</span> 
+          <span className="mr-3">Developer Name: Mohamed Yasar Arafath&nbsp;</span> 
           <span>Register Number: 23IT102</span>
         </div>
       </div>
       <nav className="mb-4">
-        <Link to="/" className="btn btn-primary mr-2">Add Student</Link>
+        <Link to="/" className="btn btn-primary mr-2" style={{ marginRight: '10px' }}>Add Student</Link>
         <Link to="/list" className="btn btn-secondary">Student List</Link>
       </nav>
-      <hr></hr>
+      <hr />
       <Routes>
         <Route path="/" element={<AddStudent fetchStudents={fetchStudents} />} />
         <Route path="/list" element={<StudentList students={students} fetchStudents={fetchStudents} />} />

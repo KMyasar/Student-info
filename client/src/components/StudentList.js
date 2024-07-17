@@ -46,7 +46,7 @@ const StudentList = ({ students, fetchStudents }) => {
               <td>{student.year}</td>
               <td>{student.totalMarks}</td>
               <td>
-                <button className="btn btn-primary mr-2" onClick={() => startEditing(student)}>Edit</button>
+                <button className="btn btn-primary mr-2" onClick={() => startEditing(student)} style={{ marginRight: '10px' }}>Edit</button>
                 <button className="btn btn-danger" onClick={() => deleteStudent(student._id)}>Delete</button>
               </td>
             </tr>
