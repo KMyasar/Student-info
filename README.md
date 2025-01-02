@@ -50,7 +50,7 @@ A **Student Information Management System**, a web application designed to add, 
    ```
  - Open the application in your browser at `http://localhost:3000`.
 
-##Technologies Used
+## Technologies Used
 
 -   **Frontend**: React.js
 -   **Backend**: Node.js, Express.js
